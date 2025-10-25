@@ -21,7 +21,7 @@ Before diving in, here’s your roadmap:
     
 6. **Validate and troubleshoot using `systemctl` and firewall checks**
     
-7. **Destroy the VM when done (because cleanup is love ❤️)**
+7. **Destroy the VM when done**
     
 
 ---
@@ -40,24 +40,30 @@ Before diving in, here’s your roadmap:
     
     `mkdir F:\vagrant-vms\finance cd F:\vagrant-vms\finance`
     
-3. Initialize a CentOS box (e.g., `eurolinux/centos-stream-9`):
+3. Initialize a CentOS box (e.g., `boxen/centos-stream-9`):
     
     `vagrant init eurolinux/centos-stream-9`
     
-4. Open the generated `Vagrantfile` with your favorite editor (Notepad, Vim, VS Code—whatever gets you typing).  
+4. Open the generated `Vagrantfile` with your favorite editor (Notepad, Vim, VS Code...whatever gets you typing).  
     Add or modify:
     
-    `config.vm.network "private_network", ip: "192.168.56.22" config.vm.provider "virtualbox" do |vb|   vb.memory = "1024" end`
-    
+    `config.vm.network "private_network", ip: "192.168.56.127"`
+    `config.vm.network "public_network"`
+    `config.vm.provider "virtualbox" do |vb`
+    `vb.memory = "1024"
+     end`
+
+    Save an quit. 
     ⚠️ Make sure this IP doesn’t collide with other machines on your network.
     
-5. Start your VM:
+6. Start your VM:
     
     `vagrant up`
     
-6. Log in and switch to root:
+7. Log in and switch to root:
     
-    `vagrant ssh sudo -i`
+    `vagrant ssh`
+    `sudo -i`
     
 
 ---
@@ -66,14 +72,17 @@ Before diving in, here’s your roadmap:
 
 This step is purely cosmetic, but hey, who doesn’t like a personalized hostname?
 
-`echo "finance" > /etc/hostname hostname finance logout vagrant ssh`
+`echo "finance" > /etc/hostname hostname`
+`hostname finance`
+
+Then logout and login again.
 
 ---
 
 ## 📦 Step 3: Install HTTPD and Dependencies
 
-Install all the packages you’ll need for this setup:
-
+Update and install all the packages you’ll need for this setup:
+`sudo yum update && upgrade -y`
 `yum install -y httpd wget vim unzip zip`
 
 **Why these packages?**
