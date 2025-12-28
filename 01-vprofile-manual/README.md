@@ -264,7 +264,7 @@ sudo rabbitmqctl add_user test test
 sudo rabbitmqctl set_user_tags test administrator
 ```
 ```bash
-rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
+sudo rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
 ```
 ```bash
 sudo systemctl restart rabbitmq-server
