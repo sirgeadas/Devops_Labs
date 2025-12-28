@@ -20,11 +20,11 @@ The stack consists of:
 |         MySQL |            Relational database |
 
 **Deployment Flow:**
-1. MSQL       ➡️ Database
-2. Memcached  ➡️ Database caching
-3. RabbitMQ   ➡️ Message broker
-4. Tomcat     ➡️ Application server
-5. Nginx      ➡️ Web server / load balancing
+1. MSQL           ➡️ Database
+2. Memcached ➡️ Database caching
+3. RabbitMQ    ➡️ Message broker
+4. Tomcat         ➡️ Application server
+5. Nginx           ➡️ Web server / load balancing
 
 > Manual deployment ensures you understand how each component works, the dependencies, and the order of setup.
 
@@ -292,7 +292,7 @@ vagrant ssh app01
 sudo dnf update -y
 ```
 ```bash
-sudo dnf install epel-release java-17-openjdk java-17-openjdk-devel git wget -y
+sudo dnf install epel-release java-17-openjdk java-17-openjdk-devel unzip git wget -y
 ```
 
 - Download and install Tomcat:
@@ -316,6 +316,9 @@ sudo chown -R tomcat.tomcat /usr/local/tomcat
 ```
 
 - Configure Tomcat as a systemd service (/etc/systemd/system/tomcat.service):
+```bash
+sudo vi /etc/systemd/system/tomcat.service
+```
 
 ```bash
 [Unit]
@@ -386,10 +389,8 @@ git clone -b local https://github.com/hkhcoder/vprofile-project.git
 cd vprofile-project
 ```
 ```bash
-vim src/main/resources/application.properties
+vi src/main/resources/application.properties
 ```
-
-#### Updating backend server details:
 
 - Build and deploy the application:
 ```bash
