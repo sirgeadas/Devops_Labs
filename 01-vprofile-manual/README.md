@@ -79,6 +79,7 @@ cat /etc/hosts
 ```bash
 sudo dnf update -y
 ```
+
 ```bash
 sudo dnf install epel-release git mariadb-server -y
 ```
@@ -86,6 +87,7 @@ sudo dnf install epel-release git mariadb-server -y
 ```bash
 sudo systemctl start mariadb
 ```
+
 ```bash
 sudo systemctl enable mariadb
 ```
@@ -150,12 +152,15 @@ EXIT;
 ```bash
 cd /tmp/
 ```
+
 ```bash
 git clone -b local https://github.com/hkhcoder/vprofile-project.git
 ```
+
 ```bash
 cd vprofile-project
 ```
+
 ```bash
 mysql -u root -padmin123 accounts < src/main/resources/db_backup.sql
 ```
@@ -164,18 +169,23 @@ mysql -u root -padmin123 accounts < src/main/resources/db_backup.sql
 ```bash
 sudo systemctl restart mariadb
 ```
+
 ```bash
 sudo systemctl start firewalld
 ```
+
 ```bash
 sudo systemctl enable firewalld
 ```
+
 ```bash
 sudo firewall-cmd --zone=public --add-port=3306/tcp --permanent
 ```
+
 ```bash
 sudo firewall-cmd --reload
 ```
+
 ```bash
 sudo systemctl restart mariadb
 ```
@@ -192,15 +202,19 @@ vagrant ssh mc01
 ```bash
 sudo dnf update -y
 ```
+
 ```bash
 sudo dnf install epel-release memcached -y
 ```
+
 ```bash
 sudo systemctl start memcached
 ```
+
 ```bash
 sudo systemctl enable memcached
 ```
+
 ```bash
 sudo systemctl status memcached
 ```
@@ -209,6 +223,7 @@ sudo systemctl status memcached
 ```bash
 sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/sysconfig/memcached
 ```
+
 ```bash
 sudo systemctl restart memcached
 ```
@@ -217,12 +232,15 @@ sudo systemctl restart memcached
 ```bash
 sudo systemctl start firewalld
 ```
+
 ```bash
 sudo systemctl enable firewalld
 ```
+
 ```bash
 sudo firewall-cmd --add-port=11211/tcp --permanent
 ```
+
 ```bash
 sudo firewall-cmd --reload
 ```
@@ -240,15 +258,19 @@ vagrant ssh rmq01
 ```bash
 sudo dnf update -y
 ```
+
 ```bash
 sudo dnf install epel-release wget -y
 ```
+
 ```bash
 sudo dnf -y install centos-release-rabbitmq-38
 ```
+
 ```bash
 sudo dnf --enablerepo=centos-rabbitmq-38 -y install rabbitmq-server
 ```
+
 ```bash
 sudo systemctl enable --now rabbitmq-server
 ```
@@ -257,15 +279,19 @@ sudo systemctl enable --now rabbitmq-server
 ```bash
 sudo sh -c 'echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config'
 ```
+
 ```bash
 sudo rabbitmqctl add_user test test
 ````
+
 ```bash
 sudo rabbitmqctl set_user_tags test administrator
 ```
+
 ```bash
 sudo rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
 ```
+
 ```bash
 sudo systemctl restart rabbitmq-server
 ```
@@ -274,6 +300,7 @@ sudo systemctl restart rabbitmq-server
 ```bash
 sudo firewall-cmd --add-port=5672/tcp --permanent
 ```
+
 ```bash
 sudo firewall-cmd --reload
 ```
@@ -291,6 +318,7 @@ vagrant ssh app01
 ```bash
 sudo dnf update -y
 ```
+
 ```bash
 sudo dnf install epel-release java-17-openjdk java-17-openjdk-devel unzip git wget -y
 ```
@@ -299,18 +327,22 @@ sudo dnf install epel-release java-17-openjdk java-17-openjdk-devel unzip git wg
 ```bash
 cd /tmp/
 ```
+
 ```bash
 wget https://archive.apache.org/dist/tomcat/tomcat-10/v10.1.26/bin/apache-tomcat-10.1.26.tar.gz
 ```
+
 ```bash
 tar xzvf apache-tomcat-10.1.26.tar.gz
 ```
 ```bash
 sudo useradd --home-dir /usr/local/tomcat --shell /sbin/nologin tomcat
 ```
+
 ```bash
 sudo cp -r apache-tomcat-10.1.26/* /usr/local/tomcat/
 ```
+
 ```bash
 sudo chown -R tomcat.tomcat /usr/local/tomcat
 ```
@@ -348,9 +380,11 @@ WantedBy=multi-user.target
 ```bash
 sudo systemctl daemon-reload
 ```
+
 ```bash
 sudo systemctl start tomcat
 ```
+
 ```bash
 sudo systemctl enable tomcat
 ```
@@ -359,6 +393,7 @@ sudo systemctl enable tomcat
 ```bash
 sudo firewall-cmd --add-port=8080/tcp --permanent
 ```
+
 ```bash
 sudo firewall-cmd --reload
 ```
@@ -369,15 +404,19 @@ sudo firewall-cmd --reload
 ```bash
 cd /tmp/
 ```
+
 ```bash
 wget https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip
 ```
+
 ```bash
 unzip apache-maven-3.9.9-bin.zip
 ```
+
 ```bash
 sudo cp -r apache-maven-3.9.9 /usr/local/maven3.9
 ```
+
 ```bash
 export MAVEN_OPTS="-Xmx512m"
 ```
@@ -385,9 +424,11 @@ export MAVEN_OPTS="-Xmx512m"
 ```bash
 git clone -b local https://github.com/hkhcoder/vprofile-project.git
 ```
+
 ```bash
 cd vprofile-project
 ```
+
 ```bash
 vi src/main/resources/application.properties
 ```
@@ -396,21 +437,26 @@ vi src/main/resources/application.properties
 ```bash
 /usr/local/maven3.9/bin/mvn install
 ```
+
 ```bash
 sudo systemctl stop tomcat
 ```
+
 ```bash
 sudo rm -rf /usr/local/tomcat/webapps/ROOT*
 ```
 ```bash
 sudo cp target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
 ```
+
 ```bash
 sudo chown -R tomcat.tomcat /usr/local/tomcat/webapps
 ```
+
 ```bash
 sudo systemctl start tomcat
 ```
+
 ```bash
 sudo systemctl restart tomcat
 ```
@@ -421,6 +467,7 @@ sudo systemctl restart tomcat
 ```bash
 vagrant ssh web01
 ```
+
 ```bash
 sudo -i
 ```
@@ -429,11 +476,17 @@ sudo -i
 ```bash
 apt update && apt upgrade -y
 ```
+
 ```bash
 apt install nginx -y
 ```
 
-- Configure Nginx (/etc/nginx/sites-available/vproapp):
+- Configure Nginx 
+
+```bash
+vi /etc/nginx/sites-available/vproapp
+```
+
 ```bash
 upstream vproapp {
     server app01:8080;
@@ -451,15 +504,18 @@ server {
 ```bash
 rm -rf /etc/nginx/sites-enabled/default
 ```
+
 ```bash
 ln -s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
+```
+
 ```bash
 systemctl restart nginx
 ```
 
 ## Validation
 
-Open a browser and navigate to the Nginx VM IP.
+Open a browser and navigate to the Nginx VM IP `192.168.56.11`.
 
 You should see the VProfile web application running.
 
