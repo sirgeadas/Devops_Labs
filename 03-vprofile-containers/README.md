@@ -1,5 +1,7 @@
 # VProfile Project – Containers Intro
 
+> 📁 Part 3 of my DevOps learning path — previous: [Automated Deployment](../02-vprofile-automation/README.md)
+
 ## Overview
 
 The goal here is simple: take the same VProfile app stack I previously deployed manually across **five separate VMs**, and run the whole thing on **a single VM using containers**. With one command!
@@ -165,6 +167,4 @@ The manual deployment required me to:
 But here, the same application stack came up with a single command.
 
 That gap — five VMs and hours of work vs. one command — is why the industry shifted to containers. Can't wait for the next chapters! 😊
-
-> 📁 Part 3 of my DevOps learning path — previous: [Automated Deployment](../02-vprofile-automation/README.md)
 
