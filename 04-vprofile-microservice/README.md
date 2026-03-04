@@ -19,15 +19,10 @@ EMart uses an API Gateway pattern.
 Nginx sits at the front and routes traffic to the right service based on the URL path:
 
 | Endpoint | Service | Language | Database |
-
 | -------- | ------- | -------- | -------- |
-
-| `/` | Client App | Angular | — |
-
+| `/` (root) | Client App | Angular | — |
 | `/api` | Mart API | Node.js | MongoDB |
-
 | `/webapi` | Books API | Java | MySQL |
-
 
 ```
 
