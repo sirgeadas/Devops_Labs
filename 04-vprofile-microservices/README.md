@@ -175,15 +175,10 @@ You should see the EMart frontend served by the Angular client app via Nginx.
 Run through the following checks to validate each service:
 
 | Action | Validates |
-
 | ------ | --------- |
-
 | Frontend loads | Nginx + Angular container |
-
 | Register a new user | Node.js API + MongoDB container |
-
 | Log in successfully | Node.js API + MySQL container |
-
 | Browse the Books section | Java Books API + MySQL container |
 
 
