@@ -11,7 +11,7 @@ Each folder in this repo documents a real lab: the architecture, the steps, the 
 | 01 | [VProfile – Manual Deployment](./01-vprofile-manual/README.md) | Multi-tier app deployed by hand across 5 VMs | Vagrant, Nginx, Tomcat, MySQL, RabbitMQ, Memcached |
 | 02 | [VProfile – Automated Deployment](./02-vprofile-automation/README.md) | Same stack, fully automated with shell provisioning scripts | Vagrant, Bash |
 | 03 | [VProfile – Containers Intro](./03-vprofile-containers/README.md) | Entire stack running on a single VM with one command | Docker, Docker Compose |
-| 04 | [VProfile – Microservices](./04-vprofile-microservice/README.md) | Microservices e-commerce app with an API Gateway pattern | Docker, Docker Compose |
+| 04 | [VProfile – Microservices](./04-vprofile-microservices/README.md) | Microservices e-commerce app with an API Gateway pattern | Docker, Docker Compose |
 
 ## Roadmap
 
